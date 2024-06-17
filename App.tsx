@@ -1,118 +1,110 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+import "react-native-gesture-handler";
+import React, { useState } from 'react';
+import TestCalendar from './src/test/test-calendar';
+import TestTopCalendar from './src/test/test-top-calendar';
+import TestTopCalendar2 from './src/test/test-top-calendar2';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import RenderDays from "./src/test/test-swipe";
+import WeekCalendarScreen from "./src/test/week-calendar";
+import TestCalendarApp from "./src/test/test-calendar-app";
+import TestRps from "./src/test/test-rps";
+import CheckBox from "./src/component/checkBox";
+import { KeyboardAvoidingView, Platform, ScrollView, Text, View } from "react-native";
+import TextInput, { RequiredType } from "./src/component/input";
+import TextButton from "./src/component/textButton";
+import CheckBoxSelected from "./src/assets/check-box-selected";
+import SelectedIcon from './src/assets/radiobutton.svg'
+import TestListItem from "./src/test/test-list-item";
+import CheckBoxUnSelected from "./src/assets/check-box-un-selected";
+import IconData from './src/assets/icon.svg'
 
-import React from 'react';
-import type {PropsWithChildren} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
-
-function Section({children, title}: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-}
-
-function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
+const App = () => {
+  const [value, setValue] = useState<boolean>(false)
+  const [value2, setValue2] = useState<boolean>(false)
+  const [input, setInput] = useState<string>('')
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
+    <GestureHandlerRootView>
+      {/* <TestCalendar /> */}
+      {/* <WeekCalendarScreen/>
+      <TestCalendarApp/> */}
+      {/* <TestCalendar /> */}
+
+
+      <CheckBox
+        isGrayBackground
+        value={value}
+        onValueChange={setValue}
+        title="すべての車両"
+        isBoldLable
+        checkBoxStyle={{
+          marginHorizontal: 16,
+          marginTop: 100,
+        }}
       />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
-}
 
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
+      <View
+        style={{
+          marginTop: 30,
+          marginHorizontal: 16,
+        }}>
+
+        <TextInput
+          requiredType={RequiredType.Primary}
+          label="フリガナ（姓）"
+          placeholder="000000000"
+          onChangeText={setInput}
+          value={input}
+          // secureTextEntry
+        />
+        {/* <Text>{input}</Text> */}
+
+
+      </View>
+
+
+      <TextButton
+        containerButtonStyle={{ marginTop: 15, padding: 8, justifyContent:'center'}}
+        textStyle={{ color: 'blue', fontWeight: '700' }}
+        text='TEXT BUTTON'
+        onPress={() => { }}
+        icon={<IconData />}
+        spacing={8}
+      />
+
+
+
+
+
+
+      {/* <View
+        style={{
+          marginTop: 30,
+          padding: 8,
+          alignItems: 'center'
+        }}> */}
+      {/* <TestListItem /> */}
+      {/* </View> */}
+
+
+
+
+      {/* <SelectedIcon/> */}
+
+      {/* <TestRps/> */}
+
+      {/* // <TestCalendar />
+    <TestTopCalendar /> */}
+      {/* <TestTopCalendar /> */}
+      {/* <TestTopCalendar2/> */}
+      {/* <RenderDays/> */}
+
+
+    </GestureHandlerRootView>
+
+  )
+};
+
 
 export default App;
